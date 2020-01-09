@@ -61,7 +61,8 @@ public class Student extends Human {
   public String toString() {
     int numberOfClasses = this.classes.size();
     return getName() + " has a GPA of " + getGpa() + " and is taking " +
-      numberOfClasses + " class" + (numberOfClasses != 1 ? "es" : "") + ": ";
+      numberOfClasses + " class" + (numberOfClasses != 1 ? "es" : "") +
+      (numberOfClasses == 0 ? "." : ": ");
   }
 
   /**

@@ -93,6 +93,13 @@ public class StudentTest
     assertThat(student.toString(), containsString("and is taking 1 class:"));
   }
 
+  @Test
+  public void whenStudentTakes0ClassesNoClassesAreListed() {
+    HashSet<String> classes = new HashSet<>();
+    Student student = new Student("Name", classes, 1.23, "Other");
+    assertThat(student.toString(), containsString("and is taking 0 classes."));
+  }
+
   @Ignore
   @Test
   public void davesToStringContainsHisClasses() {
