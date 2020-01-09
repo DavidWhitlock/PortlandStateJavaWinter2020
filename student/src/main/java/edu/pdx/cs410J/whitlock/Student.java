@@ -60,9 +60,25 @@ public class Student extends Human {
   @Override
   public String toString() {
     int numberOfClasses = this.classes.size();
-    return getName() + " has a GPA of " + getGpa() + " and is taking " +
-      numberOfClasses + " class" + (numberOfClasses != 1 ? "es" : "") +
-      (numberOfClasses == 0 ? "." : ": ");
+    StringBuilder sb = new StringBuilder()
+      .append(getName()).append(" has a GPA of ").append(getGpa())
+      .append(" and is taking ").append(numberOfClasses).append(" class");
+    appendNumberOfClassesSuffic(numberOfClasses, sb);
+    return sb.toString();
+  }
+
+  private void appendNumberOfClassesSuffic(int numberOfClasses, StringBuilder sb) {
+    switch (numberOfClasses) {
+      case 0:
+        sb.append("es.");
+        break;
+      case 1:
+        sb.append(": ");
+        break;
+      default:
+        sb.append("es:");
+        break;
+    }
   }
 
   /**
