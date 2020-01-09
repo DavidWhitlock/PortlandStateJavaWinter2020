@@ -2,6 +2,7 @@ package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.lang.Human;
 
+import java.util.Iterator;
 import java.util.Set;
 
 /**                                                                                 
@@ -71,7 +72,11 @@ public class Student extends Human {
   }
 
   private void appendClassNames(StringBuilder sb) {
-    for (String className : this.classes) {
+    for (Iterator<String> iter = this.classes.iterator(); iter.hasNext(); ) {
+      String className = iter.next();
+      if (!iter.hasNext() && this.classes.size() > 1) {
+        sb.append(" and ");
+      }
       sb.append(className);
     }
 
@@ -87,7 +92,7 @@ public class Student extends Human {
         sb.append(": ");
         break;
       default:
-        sb.append("es:");
+        sb.append("es: ");
         break;
     }
   }

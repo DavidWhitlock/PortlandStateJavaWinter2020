@@ -4,9 +4,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
@@ -106,6 +108,28 @@ public class StudentTest
     classes.add("One Class");
     Student student = new Student("Name", classes, 1.23, "Other");
     assertThat(student.toString(), containsString("1 class: One Class."));
+    assertThat(student.toString(), not(containsString(",")));
+  }
+
+  @Test
+  public void whenStudentTakes2ClassTheListShouldNotHaveACommaButItHasAnAnd() {
+    HashSet<String> classes = new LinkedHashSet<>();
+    classes.add("One Class");
+    classes.add("Another Class");
+    Student student = new Student("Name", classes, 1.23, "Other");
+    assertThat(student.toString(), containsString("2 classes: One Class and Another Class."));
+    assertThat(student.toString(), not(containsString(",")));
+  }
+
+  @Ignore
+  @Test
+  public void whenStudentTakes3ClassTheListHasCommaAndAnd() {
+    HashSet<String> classes = new LinkedHashSet<>();
+    classes.add("One Class");
+    classes.add("Another Class");
+    classes.add("Yet Another Class");
+    Student student = new Student("Name", classes, 1.23, "Other");
+    assertThat(student.toString(), containsString("2 classes: One Class, Another Class, and Yet Another Class."));
   }
 
   @Ignore
