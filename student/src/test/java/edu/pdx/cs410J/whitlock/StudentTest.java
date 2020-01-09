@@ -27,7 +27,7 @@ public class StudentTest
   @Test
   public void studentHasExpectedGpa() {
     double gpa = 3.25;
-    var student = new Student("Name", new ArrayList<>(), gpa, "Other");
+    var student = createStudentWithGpa(gpa);
     assertThat(student.getGpa(), equalTo(gpa));
   }
 
@@ -56,6 +56,27 @@ public class StudentTest
   @Test
   public void toStringContainsGpa() {
     assertThat(getDave().toString(), containsString(" has a GPA of 3.64 "));
+  }
+
+  @Test
+  public void toStringContainsAnotherGPA() {
+    double gpa = 2.5;
+    Student student = createStudentWithGpa(gpa);
+    assertThat(student.toString(), containsString(" has a GPA of 2.5 "));
+  }
+
+  private Student createStudentWithGpa(double gpa) {
+    return new Student("Name", new ArrayList<>(), gpa, "Other");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void whenGpaIs25Point5AnIllegalArgumentExceptionIsThrown() {
+    createStudentWithGpa(25.5);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void whenGpaLessThanZeroAnIllegalArgumentExceptionIsThrown() {
+    createStudentWithGpa(-25.5);
   }
 
 }
