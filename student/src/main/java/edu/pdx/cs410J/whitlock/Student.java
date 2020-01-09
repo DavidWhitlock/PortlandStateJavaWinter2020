@@ -47,7 +47,7 @@ public class Student extends Human {
    */
   @Override
   public String toString() {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return getName() + " has a GPA of " + getGpa() + " ";
   }
 
   /**
