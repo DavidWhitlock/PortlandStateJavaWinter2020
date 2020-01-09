@@ -100,6 +100,14 @@ public class StudentTest
     assertThat(student.toString(), containsString("and is taking 0 classes."));
   }
 
+  @Test
+  public void whenStudentTakes1ClassTheListShouldNotHaveAComma() {
+    HashSet<String> classes = new HashSet<>();
+    classes.add("One Class");
+    Student student = new Student("Name", classes, 1.23, "Other");
+    assertThat(student.toString(), containsString("1 class: One Class."));
+  }
+
   @Ignore
   @Test
   public void davesToStringContainsHisClasses() {

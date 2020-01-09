@@ -64,7 +64,18 @@ public class Student extends Human {
       .append(getName()).append(" has a GPA of ").append(getGpa())
       .append(" and is taking ").append(numberOfClasses).append(" class");
     appendNumberOfClassesSuffix(numberOfClasses, sb);
+
+    appendClassNames(sb);
+
     return sb.toString();
+  }
+
+  private void appendClassNames(StringBuilder sb) {
+    for (String className : this.classes) {
+      sb.append(className);
+    }
+
+    sb.append(".");
   }
 
   private void appendNumberOfClassesSuffix(int numberOfClasses, StringBuilder sb) {
