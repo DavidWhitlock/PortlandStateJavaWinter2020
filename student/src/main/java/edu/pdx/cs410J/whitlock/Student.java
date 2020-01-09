@@ -63,11 +63,11 @@ public class Student extends Human {
     StringBuilder sb = new StringBuilder()
       .append(getName()).append(" has a GPA of ").append(getGpa())
       .append(" and is taking ").append(numberOfClasses).append(" class");
-    appendNumberOfClassesSuffic(numberOfClasses, sb);
+    appendNumberOfClassesSuffix(numberOfClasses, sb);
     return sb.toString();
   }
 
-  private void appendNumberOfClassesSuffic(int numberOfClasses, StringBuilder sb) {
+  private void appendNumberOfClassesSuffix(int numberOfClasses, StringBuilder sb) {
     switch (numberOfClasses) {
       case 0:
         sb.append("es.");
