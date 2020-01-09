@@ -3,13 +3,16 @@ package edu.pdx.cs410J.whitlock;
 import edu.pdx.cs410J.lang.Human;
 
 import java.util.ArrayList;
-                                                                                    
+import java.util.HashSet;
+import java.util.Set;
+
 /**                                                                                 
  * This class is represents a <code>Student</code>.                                 
  */                                                                                 
 public class Student extends Human {
 
   private final double gpa;
+  private final ArrayList<String> classes;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -34,7 +37,19 @@ public class Student extends Human {
       throw new IllegalArgumentException(gpa + " is too small");
     }
 
+    throwDuplicateClassExceptionIfContainsDuplicates(classes);
+    this.classes = classes;
+
+
     this.gpa = gpa;
+  }
+
+  private void throwDuplicateClassExceptionIfContainsDuplicates(ArrayList<String> classes) {
+    Set<String> set = new HashSet<>();
+    set.addAll(classes);
+    if (set.size() != classes.size()) {
+      throw new DuplicateClassException();
+    }
   }
 
   /**                                                                               
@@ -55,7 +70,9 @@ public class Student extends Human {
    */
   @Override
   public String toString() {
-    return getName() + " has a GPA of " + getGpa() + " ";
+    int numberOfClasses = this.classes.size();
+    return getName() + " has a GPA of " + getGpa() + " and is taking " +
+      numberOfClasses + " class" + (numberOfClasses != 1 ? "es" : "") + ": ";
   }
 
   /**
