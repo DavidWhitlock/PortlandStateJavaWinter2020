@@ -1,6 +1,7 @@
 package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.InvokeMainTestCase;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,5 +26,35 @@ public class StudentIT extends InvokeMainTestCase {
     assertThat(result.getTextWrittenToStandardError(), containsString("Missing command line arguments"));
   }
 
+  @Test
+  public void invokingMainWithoutGenderPrintsErrorMessageAndExits1() {
+    InvokeMainTestCase.MainMethodResult result = invokeMain(Student.class, "Student");
+    assertThat(result.getTextWrittenToStandardError(), containsString("Missing gender"));
+    assertThat(result.getExitCode(), equalTo(1));
+  }
+
+  @Test
+  public void invokingMainWithoutGPAPrintsErrorMessageAndExits1() {
+    InvokeMainTestCase.MainMethodResult result = invokeMain(Student.class, "Student", "other");
+    assertThat(result.getTextWrittenToStandardError(), containsString("Missing gpa"));
+    assertThat(result.getExitCode(), equalTo(1));
+  }
+
+  @Test
+  public void invokingMainWithZeroClassesPrintsOutStudentAndExits0() {
+    InvokeMainTestCase.MainMethodResult result = invokeMain(Student.class, "Student", "other", "1.23");
+    assertThat(result.getTextWrittenToStandardOut(), containsString("Student has a GPA of 1.23 and is taking 0 classes."));
+    assertThat(result.getExitCode(), equalTo(0));
+  }
+
+  @Ignore
+  @Test
+  public void runMainWithDaveStudent() {
+    MainMethodResult main = invokeMain(Student.class, "Dave", "male", "3.64", "Algorithms", "Operating Systems", "Java");
+    assertThat(main.getExitCode(), equalTo(0));
+    assertThat(main.getTextWrittenToStandardOut(),
+      containsString("Dave has a GPA of 3.64 and is taking 3 classes: Algorithms, Operating " +
+                     "Systems, and Java. He says \"This class is too much work\"."));
+  }
 
 }
