@@ -72,13 +72,29 @@ public class Student extends Human {
   }
 
   private void appendClassNames(StringBuilder sb) {
-    for (Iterator<String> iter = this.classes.iterator(); iter.hasNext(); ) {
-      String className = iter.next();
-      if (!iter.hasNext() && this.classes.size() > 1) {
-        sb.append(" and ");
+    int numberOfClasses = this.classes.size();
+    if (numberOfClasses == 1) {
+      sb.append(this.classes.iterator().next());
+
+    } else if (numberOfClasses == 2) {
+      Iterator<String> iter = this.classes.iterator();
+      sb.append(iter.next());
+      sb.append(" and ");
+      sb.append(iter.next());
+
+    } else {
+      for (Iterator<String> iter = this.classes.iterator(); iter.hasNext(); ) {
+        String className = iter.next();
+        if (!iter.hasNext()) {
+          sb.append("and ");
+        }
+        sb.append(className);
+        if (iter.hasNext()) {
+          sb.append(", ");
+        }
       }
-      sb.append(className);
     }
+
 
     sb.append(".");
   }

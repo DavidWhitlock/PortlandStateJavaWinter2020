@@ -121,7 +121,6 @@ public class StudentTest
     assertThat(student.toString(), not(containsString(",")));
   }
 
-  @Ignore
   @Test
   public void whenStudentTakes3ClassTheListHasCommaAndAnd() {
     HashSet<String> classes = new LinkedHashSet<>();
@@ -129,7 +128,7 @@ public class StudentTest
     classes.add("Another Class");
     classes.add("Yet Another Class");
     Student student = new Student("Name", classes, 1.23, "Other");
-    assertThat(student.toString(), containsString("2 classes: One Class, Another Class, and Yet Another Class."));
+    assertThat(student.toString(), containsString("3 classes: One Class, Another Class, and Yet Another Class."));
   }
 
   @Ignore
