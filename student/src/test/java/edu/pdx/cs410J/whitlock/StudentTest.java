@@ -137,4 +137,26 @@ public class StudentTest
     assertThat(getDave().toString(), containsString(classes));
   }
 
+  @Test
+  public void femaleStudentHasShePronoun() {
+    Student student = new Student("Student", new HashSet<>(), 1.2, "female");
+    assertThat(student.getGenderPronoun(), equalTo("She"));
+  }
+
+  @Test
+  public void maleStudentHasHePronoun() {
+    Student student = new Student("Student", new HashSet<>(), 1.2, "male");
+    assertThat(student.getGenderPronoun(), equalTo("He"));
+  }
+
+  @Test
+  public void otherGenderedStudentHasTheyPronoun() {
+    Student student = new Student("Student", new HashSet<>(), 1.2, "other");
+    assertThat(student.getGenderPronoun(), equalTo("They"));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void studentWithUnknownGenderThrowsIllegalArgumentException() {
+    new Student("Student", new HashSet<>(), 1.2, "unknown");
+  }
 }

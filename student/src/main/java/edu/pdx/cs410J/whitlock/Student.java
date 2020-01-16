@@ -12,6 +12,7 @@ public class Student extends Human {
 
   private final double gpa;
   private final Set<String> classes;
+  private String genderPronoun;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -40,6 +41,19 @@ public class Student extends Human {
 
 
     this.gpa = gpa;
+
+    if (gender.equals("female")) {
+      this.genderPronoun = "She";
+
+    } else if (gender.equals("male")) {
+      this.genderPronoun = "He";
+
+    } else if (gender.equals("other")) {
+      this.genderPronoun = "They";
+
+    } else {
+      throw new IllegalArgumentException("Unknown gender: " + gender);
+    }
   }
 
   /**
@@ -121,5 +135,9 @@ public class Student extends Human {
   public static void main(String[] args) {
     System.err.println("Missing command line arguments");
     System.exit(1);
+  }
+
+  public String getGenderPronoun() {
+    return genderPronoun;
   }
 }
