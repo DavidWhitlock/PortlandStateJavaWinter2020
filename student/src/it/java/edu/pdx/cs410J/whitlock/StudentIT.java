@@ -1,7 +1,6 @@
 package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.InvokeMainTestCase;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -61,14 +60,22 @@ public class StudentIT extends InvokeMainTestCase {
     assertThat(result.getExitCode(), equalTo(1));
   }
 
-  @Ignore
+  @Test
+  public void oneClassPrintsOutClassNameAndExits0() {
+    MainMethodResult main = invokeMain(Student.class, "Dave", "male", "3.64", "Algorithms");
+    assertThat(main.getExitCode(), equalTo(0));
+    assertThat(main.getTextWrittenToStandardOut(),
+      containsString("Dave has a GPA of 3.64 and is taking 1 class: Algorithms." +
+                     "  He says \"This class is too much work\"."));
+  }
+
   @Test
   public void runMainWithDaveStudent() {
     MainMethodResult main = invokeMain(Student.class, "Dave", "male", "3.64", "Algorithms", "Operating Systems", "Java");
     assertThat(main.getExitCode(), equalTo(0));
     assertThat(main.getTextWrittenToStandardOut(),
       containsString("Dave has a GPA of 3.64 and is taking 3 classes: Algorithms, Operating " +
-                     "Systems, and Java. He says \"This class is too much work\"."));
+                     "Systems, and Java.  He says \"This class is too much work\"."));
   }
 
 }

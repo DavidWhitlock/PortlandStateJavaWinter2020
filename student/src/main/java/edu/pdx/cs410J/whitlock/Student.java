@@ -2,6 +2,7 @@ package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.lang.Human;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -153,7 +154,12 @@ public class Student extends Human {
       String gpaString = args[2];
       try {
         double gpa = Double.parseDouble(gpaString);
-        Student student = new Student(args[0], new LinkedHashSet<>(), gpa, args[1]);
+        HashSet<String> classes = new LinkedHashSet<>();
+        for (int i = 3; i < args.length; i++) {
+          classes.add(args[i]);
+        }
+
+        Student student = new Student(args[0], classes, gpa, args[1]);
         System.out.println(student.toString());
         System.exit(0);
 
