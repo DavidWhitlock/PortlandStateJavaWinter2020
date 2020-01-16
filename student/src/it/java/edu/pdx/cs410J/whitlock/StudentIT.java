@@ -47,6 +47,20 @@ public class StudentIT extends InvokeMainTestCase {
     assertThat(result.getExitCode(), equalTo(0));
   }
 
+  @Test
+  public void unknownGenderPrintsErrorMessageAndExits1() {
+    InvokeMainTestCase.MainMethodResult result = invokeMain(Student.class, "other", "Student", "1.23");
+    assertThat(result.getTextWrittenToStandardError(), containsString("Unknown gender: Student"));
+    assertThat(result.getExitCode(), equalTo(1));
+  }
+
+  @Test
+  public void invalidGpaPrintsErrorMessageAndExits1() {
+    InvokeMainTestCase.MainMethodResult result = invokeMain(Student.class, "other", "Student", "GPA!!");
+    assertThat(result.getTextWrittenToStandardError(), containsString("Invalid GPA: GPA!!"));
+    assertThat(result.getExitCode(), equalTo(1));
+  }
+
   @Ignore
   @Test
   public void runMainWithDaveStudent() {

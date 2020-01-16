@@ -150,10 +150,19 @@ public class Student extends Human {
       printErrorMessageAndExit("Missing gpa");
 
     } else {
-      double gpa = Double.parseDouble(args[2]);
-      Student student = new Student(args[0], new LinkedHashSet<>(), gpa, args[1]);
-      System.out.println(student.toString());
-      System.exit(0);
+      String gpaString = args[2];
+      try {
+        double gpa = Double.parseDouble(gpaString);
+        Student student = new Student(args[0], new LinkedHashSet<>(), gpa, args[1]);
+        System.out.println(student.toString());
+        System.exit(0);
+
+      } catch (NumberFormatException ex) {
+        printErrorMessageAndExit("Invalid GPA: " + gpaString);
+
+      } catch (IllegalArgumentException ex) {
+        printErrorMessageAndExit(ex.getMessage());
+      }
     }
 
 
