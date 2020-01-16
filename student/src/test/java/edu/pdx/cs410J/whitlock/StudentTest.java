@@ -34,7 +34,7 @@ public class StudentTest
   }
 
   private Student getDave() {
-    HashSet<String> classes = new HashSet<>();
+    HashSet<String> classes = new LinkedHashSet<>();
     classes.add("Algorithms");
     classes.add("Operating Systems");
     classes.add("Java");
@@ -131,7 +131,6 @@ public class StudentTest
     assertThat(student.toString(), containsString("3 classes: One Class, Another Class, and Yet Another Class."));
   }
 
-  @Ignore
   @Test
   public void davesToStringContainsHisClasses() {
     String classes = "and is taking 3 classes: Algorithms, Operating Systems, and Java.";
