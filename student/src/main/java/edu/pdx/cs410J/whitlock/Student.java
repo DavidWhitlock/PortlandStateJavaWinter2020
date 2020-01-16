@@ -28,8 +28,10 @@ public class Student extends Human {
    *        The student's grade point average                                       
    * @param gender                                                                  
    *        The student's gender ("male" or "female", or "other", case insensitive)
-   */                                                                               
-  public Student(String name, Set<String> classes, double gpa, String gender) {
+   * @throws IllegalArgumentException
+   *         If the GPA is not between 0.0 and 4.0 or if the gender is unknown
+   */
+  public Student(String name, Set<String> classes, double gpa, String gender) throws IllegalArgumentException {
     super(name);
 
     if (gpa > 4.0) {
