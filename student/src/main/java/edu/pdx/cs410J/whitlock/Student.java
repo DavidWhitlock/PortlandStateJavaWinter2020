@@ -61,7 +61,7 @@ public class Student extends Human {
    */
   @Override
   public String says() {                                                            
-    throw new UnsupportedOperationException("Not implemented yet");
+    return "This class is too much work";
   }
 
   double getGpa() {
@@ -81,6 +81,12 @@ public class Student extends Human {
     appendNumberOfClassesSuffix(numberOfClasses, sb);
 
     appendClassNames(sb);
+
+    sb.append("  ");
+    sb.append(getGenderPronoun());
+    sb.append(" says \"");
+    sb.append(says());
+    sb.append("\".");
 
     return sb.toString();
   }

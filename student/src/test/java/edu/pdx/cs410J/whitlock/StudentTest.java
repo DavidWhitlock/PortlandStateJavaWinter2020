@@ -1,6 +1,5 @@
 package edu.pdx.cs410J.whitlock;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -41,7 +40,6 @@ public class StudentTest
     return new Student("Dave", classes, 3.64, "male");
   }
 
-  @Ignore
   @Test
   public void exampleStudentFromAssignment() {
     Student dave = getDave();
@@ -176,5 +174,11 @@ public class StudentTest
   public void maleGenderIsCaseInsensitive() {
     Student student = new Student("Student", new HashSet<>(), 1.2, "Male");
     assertThat(student.getGenderPronoun(), equalTo("He"));
+  }
+
+  @Test
+  public void allStudentsSayThisClassIsTooMuchWork() {
+    Student student = new Student("Student", new HashSet<>(), 1.2, "Male");
+    assertThat(student.says(), equalTo("This class is too much work"));
   }
 }
