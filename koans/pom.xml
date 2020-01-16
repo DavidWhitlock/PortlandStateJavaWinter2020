@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>PortlandStateJavaWinter2020</artifactId>
-    <groupId>edu.pdx.cs410J.YourUserId</groupId>
+    <groupId>edu.pdx.cs410J.whitlock</groupId>
     <version>Winter2020</version>
   </parent>
   <groupId>edu.pdx.cs410J.whitlock</groupId>
@@ -68,11 +68,10 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
+        <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <!-- No unit tests for koans project -->
+          <failIfNoTests>false</failIfNoTests>
         </configuration>
       </plugin>
       <plugin>

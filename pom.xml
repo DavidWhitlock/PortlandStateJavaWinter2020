@@ -14,7 +14,7 @@ accordingly
     <groupId>edu.pdx.cs410J</groupId>
     <version>Winter2020</version>
   </parent>
-  <groupId>edu.pdx.cs410J.YourUserId</groupId>
+  <groupId>edu.pdx.cs410J.whitlock</groupId>
   <artifactId>PortlandStateJavaWinter2020</artifactId>
   <version>Winter2020</version>
 
