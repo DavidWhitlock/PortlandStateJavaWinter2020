@@ -22,7 +22,7 @@ public class StudentTest
   @Test
   public void studentNamedPatIsNamedPat() {
     String name = "Pat";
-    var pat = new Student(name, new HashSet<>(), 0.0, "Doesn't matter");
+    var pat = new Student(name, new HashSet<>(), 0.0, "other");
     assertThat(pat.getName(), equalTo(name));
   }
 
@@ -158,5 +158,23 @@ public class StudentTest
   @Test(expected = IllegalArgumentException.class)
   public void studentWithUnknownGenderThrowsIllegalArgumentException() {
     new Student("Student", new HashSet<>(), 1.2, "unknown");
+  }
+
+  @Test
+  public void otherGenderIsCaseInsensitive() {
+    Student student = new Student("Student", new HashSet<>(), 1.2, "Other");
+    assertThat(student.getGenderPronoun(), equalTo("They"));
+  }
+
+  @Test
+  public void femaleGenderIsCaseInsensitive() {
+    Student student = new Student("Student", new HashSet<>(), 1.2, "Female");
+    assertThat(student.getGenderPronoun(), equalTo("She"));
+  }
+
+  @Test
+  public void maleGenderIsCaseInsensitive() {
+    Student student = new Student("Student", new HashSet<>(), 1.2, "Male");
+    assertThat(student.getGenderPronoun(), equalTo("He"));
   }
 }

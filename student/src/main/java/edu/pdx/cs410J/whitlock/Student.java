@@ -42,13 +42,13 @@ public class Student extends Human {
 
     this.gpa = gpa;
 
-    if (gender.equals("female")) {
+    if (gender.equalsIgnoreCase("female")) {
       this.genderPronoun = "She";
 
-    } else if (gender.equals("male")) {
+    } else if (gender.equalsIgnoreCase("male")) {
       this.genderPronoun = "He";
 
-    } else if (gender.equals("other")) {
+    } else if (gender.equalsIgnoreCase("other")) {
       this.genderPronoun = "They";
 
     } else {
@@ -137,7 +137,7 @@ public class Student extends Human {
     System.exit(1);
   }
 
-  public String getGenderPronoun() {
+  String getGenderPronoun() {
     return genderPronoun;
   }
 }
