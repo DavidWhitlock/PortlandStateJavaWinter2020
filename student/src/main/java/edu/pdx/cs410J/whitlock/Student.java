@@ -154,23 +154,32 @@ public class Student extends Human {
 
     } else {
       String gpaString = args[2];
+      double gpa;
       try {
-        double gpa = Double.parseDouble(gpaString);
-        HashSet<String> classes = new LinkedHashSet<>();
-        for (int i = 3; i < args.length; i++) {
-          classes.add(args[i]);
-        }
-
-        Student student = new Student(args[0], classes, gpa, args[1]);
-        System.out.println(student.toString());
-        System.exit(0);
+        gpa = Double.parseDouble(gpaString);
 
       } catch (NumberFormatException ex) {
         printErrorMessageAndExit("Invalid GPA: " + gpaString);
+        return;
+      }
+
+      HashSet<String> classes = new LinkedHashSet<>();
+      for (int i = 3; i < args.length; i++) {
+        classes.add(args[i]);
+      }
+
+      Student student;
+      try {
+        student = new Student(args[0], classes, gpa, args[1]);
 
       } catch (IllegalArgumentException ex) {
         printErrorMessageAndExit(ex.getMessage());
+        return;
       }
+
+      System.out.println(student.toString());
+      System.exit(0);
+
     }
 
 
