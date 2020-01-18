@@ -21,7 +21,7 @@ accordingly
   <packaging>pom</packaging>
   <name>PSUJavaWinter2020</name>
   <description>Source code written in the Winter 2020 offering of Advanced Programming with Java</description>
-  <url>http://YourGitHubUser.github.io/PortlandStateJavaWinter2020</url>
+  <url>http://DavidWhitlock.github.io/PortlandStateJavaWinter2020</url>
 
   <modules>
     <module>student</module>
@@ -36,7 +36,7 @@ accordingly
   </organization>
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/YourGitHubUser/PortlandStateJavaWinter2020/issues</url>
+    <url>https://github.com/DavidWhitlock/PortlandStateJavaWinter2020/issues</url>
   </issueManagement>
   <licenses>
     <license>
@@ -73,7 +73,7 @@ accordingly
     <site>
       <id>gh-pages</id>
       <name>GitHub Pages</name>
-      <url>github:http://YourGitHubUser.github.io/PortlandStateJavaWinter2020/</url>
+      <url>github:http://davidwhitlock.github.io/PortlandStateJavaWinter2020/</url>
     </site>
   </distributionManagement>
 
