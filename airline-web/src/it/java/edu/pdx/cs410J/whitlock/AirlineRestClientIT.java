@@ -48,7 +48,7 @@ public class AirlineRestClientIT {
   public void test4MissingRequiredParameterReturnsPreconditionFailed() throws IOException {
     AirlineRestClient client = newAirlineRestClient();
     HttpRequestHelper.Response response = client.postToMyURL(Map.of());
-    assertThat(response.getContent(), containsString(Messages.missingRequiredParameter("word")));
+    assertThat(response.getContent(), containsString(Messages.missingRequiredParameter("airline")));
     assertThat(response.getCode(), equalTo(HttpURLConnection.HTTP_PRECON_FAILED));
   }
 }

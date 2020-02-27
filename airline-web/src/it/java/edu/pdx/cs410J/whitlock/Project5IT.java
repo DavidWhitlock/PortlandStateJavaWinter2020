@@ -34,14 +34,6 @@ public class Project5IT extends InvokeMainTestCase {
         assertThat(result.getTextWrittenToStandardError(), containsString(Project5.MISSING_ARGS));
     }
 
-    @Test
-    public void test2EmptyServer() {
-        MainMethodResult result = invokeMain( Project5.class, HOSTNAME, PORT );
-        assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
-        String out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatWordCount(0)));
-    }
-
     @Test(expected = AirlineRestException.class)
     public void test3NoDefinitionsThrowsAppointmentBookRestException() throws Throwable {
         String word = "WORD";
