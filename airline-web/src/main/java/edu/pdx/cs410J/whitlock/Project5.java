@@ -2,9 +2,6 @@ package edu.pdx.cs410J.whitlock;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Map;
 
 /**
  * The main class that parses the command line and communicates with the
@@ -17,8 +14,8 @@ public class Project5 {
     public static void main(String... args) {
         String hostName = null;
         String portString = null;
-        String word = null;
-        String definition = null;
+        String airlineName = null;
+        String flightNumber = null;
 
         for (String arg : args) {
             if (hostName == null) {
@@ -27,11 +24,11 @@ public class Project5 {
             } else if ( portString == null) {
                 portString = arg;
 
-            } else if (word == null) {
-                word = arg;
+            } else if (airlineName == null) {
+                airlineName = arg;
 
-            } else if (definition == null) {
-                definition = arg;
+            } else if (flightNumber == null) {
+                flightNumber = arg;
 
             } else {
                 usage("Extraneous command line argument: " + arg);
@@ -58,29 +55,22 @@ public class Project5 {
 
         String message;
         try {
-            if (word == null) {
-                // Print all word/definition pairs
-                Map<String, String> dictionary = client.getAllDictionaryEntries();
-                StringWriter sw = new StringWriter();
-                Messages.formatDictionaryEntries(new PrintWriter(sw, true), dictionary);
-                message = sw.toString();
+            if (airlineName == null) {
+                usage("Missing airline name");
 
-            } else if (definition == null) {
-                // Print all dictionary entries
-                message = Messages.formatDictionaryEntry(word, client.getAirlineAsXml(word));
+            } else if (flightNumber == null) {
+                String xml = client.getAirlineAsXml(airlineName);
+                System.out.println(xml);
 
             } else {
-                // Post the word/definition pair
-                client.addFlight(word, 42);
-                message = Messages.definedWordAs(word, definition);
+                // Post the airlineName/definition pair
+                client.addFlight(airlineName, Integer.parseInt(flightNumber));
             }
 
         } catch ( IOException ex ) {
             error("While contacting server: " + ex);
             return;
         }
-
-        System.out.println(message);
 
         System.exit(0);
     }
