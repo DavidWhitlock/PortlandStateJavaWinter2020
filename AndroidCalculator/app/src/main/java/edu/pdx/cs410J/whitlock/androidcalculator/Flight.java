@@ -3,28 +3,43 @@ package edu.pdx.cs410J.whitlock.androidcalculator;
 import edu.pdx.cs410J.AbstractFlight;
 
 public class Flight extends AbstractFlight {
+
+  private final int number;
+  private final String source;
+  private final String departure;
+  private final String destination;
+  private final String arrival;
+
+  public Flight(int number, String source, String departure, String destination, String arrival) {
+    this.source = source;
+    this.departure = departure;
+    this.destination = destination;
+    this.arrival = arrival;
+    this.number = number;
+  }
+
   @Override
   public int getNumber() {
-    return 42;
+    return number;
   }
 
   @Override
   public String getSource() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+    return this.source;
   }
 
   @Override
   public String getDepartureString() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+    return this.departure;
   }
 
   @Override
   public String getDestination() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+    return this.destination;
   }
 
   @Override
   public String getArrivalString() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+    return this.arrival;
   }
 }
